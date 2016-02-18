@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    package="com.app.feng.PM25_displayer"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/pm25"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="ac6b8f0b103761f85ca9675c6bbe6451"
+            />
+        <activity
+            android:name="com.app.feng.PM25_displayer.Activity.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.app.feng.PM25_displayer.Activity.SearchCity"
+            />
+        <activity
+            android:name="com.app.feng.PM25_displayer.Activity.CityInfoActivity"
+            android:label="城市"
+            android:theme="@style/AppTheme"
+            android:parentActivityName="com.app.feng.PM25_displayer.Activity.MainActivity"
+            android:finishOnTaskLaunch="true"
+            android:clearTaskOnLaunch="true"
+            />
+        <activity android:name="com.app.feng.PM25_displayer.Activity.CityLocationActivity"
+        />
+        <activity android:name="com.app.feng.PM25_displayer.Activity.CityChartActivity"
+                  android:label="实时排名"
+                  android:parentActivityName="com.app.feng.PM25_displayer.Activity.MainActivity"
+                  android:theme="@style/AppTheme"
+                  />
+    </application>
+
+</manifest>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PM2.5显示软件</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <color name="action_bar_backgroud">#A9B8CB</color>
+</resources>

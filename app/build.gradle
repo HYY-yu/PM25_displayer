@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        release {
+            keyAlias 'feng'
+            keyPassword '690174435'
+            storeFile file('D:/AndroidProject/app_key/feng.jks')
+            storePassword '690174435'
+        }
+    }
+    compileSdkVersion 21
+    buildToolsVersion "20.0.0"
+    defaultConfig {
+        applicationId "com.app.feng.PM25_displayer"
+        minSdkVersion 19
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+           /* minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'*/
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile files('libs/AMap_ Location_v1.4.0_20150830.jar')
+}
