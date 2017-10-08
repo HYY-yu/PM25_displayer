@@ -7,7 +7,7 @@
                 android:background="@mipmap/city_info_backgroud"
     >
 
-    <com.app.feng.PM25_displayer.View.CircleProgressBar
+    <com.app.feng.circleprogressbar.CircleProgressBar
         android:id="@+id/circleProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

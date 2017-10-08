@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //////功能类
         city_list_source = new ArrayList<>();
-        simpleAdapter = new ChangeColorAdapter(this, city_list_source, R.layout.city_item_layout,ChangeColorAdapter.MODE_MAIN);
+        simpleAdapter = new ChangeColorAdapter(this, city_list_source, R.layout.city_item_layout, ChangeColorAdapter.MODE_MAIN);
         sqlDataHandler = new SQLDataHandler(this);
         handler = new MessageHandler(this, city_list_source, simpleAdapter);
         //为列表项设置监听器
@@ -169,9 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }else if (id == R.id.sort) {
+        if (id == R.id.sort) {
             //排行榜
             Intent intent = new Intent();
             intent.setClass(MainActivity.this, CityChartActivity.class);

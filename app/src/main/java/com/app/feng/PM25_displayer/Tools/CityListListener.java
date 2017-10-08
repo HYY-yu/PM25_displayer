@@ -39,7 +39,6 @@ public class CityListListener implements View.OnClickListener, AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //TODO:列表的点击动作产生一个详细信息的Activity
         HashMap<String, String> map = (HashMap<String,String>) adapter.getItem(position);
         select = position;
         city = map.get("city");

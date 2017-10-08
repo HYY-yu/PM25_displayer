@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PM2.5显示软件</string>
+    <string name="app_name">PM2.5显示</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

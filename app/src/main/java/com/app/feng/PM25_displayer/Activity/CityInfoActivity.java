@@ -7,7 +7,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateUtils;
 import android.util.Log;
+import android.util.TimeUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -16,8 +18,13 @@ import com.app.feng.PM25_displayer.R;
 import com.app.feng.PM25_displayer.Tools.HttpRequset;
 import com.app.feng.PM25_displayer.Tools.MessageHandler;
 import com.app.feng.PM25_displayer.Tools.SQLDataHandler;
-import com.app.feng.PM25_displayer.View.CircleProgressBar;
+import com.app.feng.circleprogressbar.CircleProgressBar;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -75,7 +82,16 @@ public class CityInfoActivity extends AppCompatActivity {
         textView_quality = (TextView) findViewById(R.id.textView_quality);
         progressBar = (CircleProgressBar) findViewById(R.id.circleProgressBar);
 
-        textView_time.setText("更新于：" + time);
+
+        DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.CHINA);
+        Date parse = null;
+        try {
+            parse = simpleDateFormat.parse(time);
+        } catch (ParseException e) {
+            time = " ";
+        }
+        textView_time.setText(String.format("更新于：%s",
+                parse != null ? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA).format(parse) : " 无数据 "));
         textView_quality.setText(quality);
         textView_suggest.setText(getSuggest(Integer.parseInt(aqi)));
 
@@ -185,50 +201,4 @@ public class CityInfoActivity extends AppCompatActivity {
         }
         return true;
     }
-
-    ///////此Handler中的代码已转移到MessageHandler，更新UI统一由MessageHandler负责
-
-
-    /*static class ChangeProgressHandler extends android.os.Handler {
-        WeakReference<CityInfoActivity> mActivity;
-
-        public ChangeProgressHandler(CityInfoActivity activity) {
-            mActivity = new WeakReference<>(activity);
-
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            //设置进度条的动画效果
-            CityInfoActivity activity = mActivity.get();
-            if (activity.tempProgress > 0 && activity.tempProgress <= 50) {
-                activity.progressBar.setColor(Color.parseColor("#4DE14D"));
-                activity.textView_quality.setTextColor(Color.parseColor("#4DE14D"));
-            } else if (activity.tempProgress > 50 && activity.tempProgress <= 100) {
-                activity.progressBar.setColor(Color.parseColor("#CAF253"));
-                activity.textView_quality.setTextColor(Color.parseColor("#CAF253"));
-            } else if (activity.tempProgress > 100 && activity.tempProgress <= 150) {
-                activity.progressBar.setColor(Color.parseColor("#F2F200"));
-                activity.textView_quality.setTextColor(Color.parseColor("#F2F200"));
-            } else if (activity.tempProgress > 150 && activity.tempProgress <= 200) {
-                activity.progressBar.setColor(Color.parseColor("#FFDD57"));
-                activity.textView_quality.setTextColor(Color.parseColor("#FFDD57"));
-            } else if (activity.tempProgress > 200 && activity.tempProgress <= 300) {
-                activity.progressBar.setColor(Color.parseColor("#FF9957"));
-                activity.textView_quality.setTextColor(Color.parseColor("#FF9957"));
-            } else if (activity.tempProgress > 300 && activity.tempProgress <= 400) {
-                activity.progressBar.setColor(Color.parseColor("#FE5758"));
-                activity.textView_quality.setTextColor(Color.parseColor("#FE5758"));
-            } else {
-                activity.progressBar.setColor(Color.parseColor("#E54FA8"));
-                activity.textView_quality.setTextColor(Color.parseColor("#E54FA8"));
-            }
-
-            if (msg.what == 0) {
-                activity.progressBar.setProgress(activity.tempProgress);
-            } else if (msg.what == 1) {
-                activity.progressBar.setProgress(activity.mProgress);
-            }
-        }
-    }*/
 }
